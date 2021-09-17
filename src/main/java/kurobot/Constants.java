@@ -8,6 +8,6 @@ public class Constants {
 	
 	public static String prefix = "$";
 	
-	public static String token = "NzQwMDY1MzEwNzI3NjAyMjM2.Xyjlhw.vtW9d633XLUnDyAtlaHByRtScLE";	//your token would go here normally
+	public static String token = "";	//your token would go here normally
 	
 }
