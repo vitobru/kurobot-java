@@ -14,7 +14,7 @@ import java.util.List;
 //import javax.swing.*;
 
 public class Main {
-	public static List<Long> devs = new ArrayList<>();	
+    public static List<Long> devs = new ArrayList<>();	
     public static String version = "0.1.0";
     public static String osname = System.getProperty("os.name");
     
