@@ -1,4 +1,4 @@
-# Kuro Bot v0.2.12-java
+# Kuro Bot v0.2.13-java
 
 ###### A Discord bot created by kuirivito and Leafa
 
