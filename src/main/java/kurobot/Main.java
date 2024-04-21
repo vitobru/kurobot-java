@@ -2,6 +2,7 @@ package kurobot;
 
 import org.javacord.api.DiscordApi;
 import org.javacord.api.DiscordApiBuilder;
+import org.javacord.api.entity.activity.ActivityType;
 import org.javacord.api.entity.intent.Intent;
 
 import java.io.BufferedReader;
@@ -13,7 +14,7 @@ import java.nio.file.Paths;
 //import javax.swing.*;
 
 public class Main {
-    public static String version = "0.2.12";
+    public static String version = "0.2.13";
     public static String osname = System.getProperty("os.name");
 
 	public static void main(String[] args) throws IOException {
@@ -33,15 +34,20 @@ public class Main {
 
         // Token
         // TODO make this a lot easier via GUI at some point
-        if (args.length != 0) {
+        // ^ this will not happen for a LONG time ^
+        if (args.length != 0) { // just checks whether or not there's an argument passed on runtime
 	        Path tokenFile = Paths.get(args[0]);
 	        if (Files.isRegularFile(tokenFile)) {
 	            try (BufferedReader tokenFileReader = Files.newBufferedReader(tokenFile)) {
 	                apiBuilder.setToken(tokenFileReader.readLine());
-	            }	        
+	            } catch (Exception e) {
+
+                    System.err.println("Error: Something is very wrong."); //maybe clarify this at some point but it's funnier left this way
+
+                }       
 	        }
         } 
-        else {
+        else { // this is where the program will initialise from 99% of the time.
         	System.out.println("Running from Constants...");
             Constants constants = new Constants(); 
             apiBuilder.setToken(constants.getToken());
@@ -54,7 +60,7 @@ public class Main {
         System.out.println("Bot has connected to Discord.");
 
         //Set Activity
-        api.updateActivity("Watching Prisma Illya"); //TODO fix this so that it properly shows the activity itself as "Watching" rather than "Playing Watching Prillya"
+        api.updateActivity(ActivityType.WATCHING, "Prisma Illya");
 
         // Listeners (Cogs)
         api.addListener(new Ping());

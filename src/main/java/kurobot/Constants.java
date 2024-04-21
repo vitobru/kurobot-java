@@ -14,17 +14,17 @@ import java.nio.file.Paths;
 
 public class Constants {
     
-	public static final Color PING_COLOR = new Color(156, 77, 201);
-	
-	public static String prefix = "$";
-	
 	private String token; //your token would go here normally
+	
+	private ArrayList<Long> devs = new ArrayList<Long>(); // for owner auth
+	
+	public static String prefix = "$"; // defining a default is fine, but we should make this changable at some point, limited to a length of 1 char
+	
+	public static final Color PING_COLOR = new Color(156, 77, 201);
 
-	private ArrayList<Long> devs = new ArrayList<Long>();
+	public Constants() { // build constructor
 
-	public Constants() {
-
-		Path tokenPath = Paths.get("token");
+		Path tokenPath = Paths.get("token"); // with the current setup, it does seem to just treat the root folder of the project as the base relative path
 		if (Files.isRegularFile(tokenPath)) {
 			try (BufferedReader tokenFileReader = Files.newBufferedReader(tokenPath)) {
 				token = tokenFileReader.readLine();
@@ -35,16 +35,16 @@ public class Constants {
 			}
 		}
 
-		devs.add(261232036625252352L);
-		devs.add(408372847652634624L);
+		devs.add(261232036625252352L); // leafa
+		devs.add(408372847652634624L); // kuirivito
 
 	}
 
-	public String getToken() {
+	public String getToken() { // this solution attributed to leafa
 		return token;
 	}
 
-	public ArrayList<Long> getDevs() {
+	public ArrayList<Long> getDevs() { // because java doesn't have the superior DEVS = [408372847652634624, 261232036625252352] from python
 		return devs;
 	}
 

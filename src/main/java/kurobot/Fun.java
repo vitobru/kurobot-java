@@ -1,3 +1,7 @@
+/*
+ * This will house the majority of Kuro's main functions
+ * This is the first major priority for updating
+ */
 package kurobot;
 
 import java.util.ArrayList;
@@ -12,7 +16,7 @@ public class Fun implements MessageCreateListener {
     public void onMessageCreate(MessageCreateEvent event) {
 		// TODO literally all of the fucking commands lmao
 
-		if (event.getMessageContent().equals(Constants.prefix+"about")) {
+		if (event.getMessageContent().equalsIgnoreCase(Constants.prefix+"about")) {
 			
 			DiscordApi api = event.getApi();
 			
@@ -26,12 +30,18 @@ public class Fun implements MessageCreateListener {
 					
 			event.getChannel().sendMessage(embed);
 		}
+
+		if (event.getMessageContent().equalsIgnoreCase(Constants.prefix+"prefix")) {
+			event.getChannel().sendMessage("The current prefix is: "+Constants.prefix);
+		}
 		
-		if (event.getMessageContent().equals(Constants.prefix+"exit")) {
+		if (event.getMessageContent().equalsIgnoreCase(Constants.prefix+"exit")) {
 			long authorID = event.getMessage().getAuthor().getId();
 			Constants constants = new Constants();
 			ArrayList<Long> devs = constants.getDevs();
 			if (devs.contains(authorID)) {
+				event.getChannel().sendMessage("Yes, master. I'll go to bed, now.");
+				System.out.println("Bot has disconnected from Discord.");
 				System.exit(1);
 			}
 			else {

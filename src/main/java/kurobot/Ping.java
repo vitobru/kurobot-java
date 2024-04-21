@@ -9,11 +9,11 @@ public class Ping implements MessageCreateListener{
     @Override
     public void onMessageCreate(MessageCreateEvent event) {
 
-        if (event.getMessageContent().equals(Constants.prefix+"ping")) {
+        if (event.getMessageContent().equalsIgnoreCase(Constants.prefix+"ping")) {
 
             EmbedBuilder embed = new EmbedBuilder()
                     .setTitle("Pong!")
-                    .setDescription("in Null ms")
+                    .setDescription("in Null ms") // placeholder
                     .setColor(Constants.PING_COLOR);
 
             double result_ms=0.0;
